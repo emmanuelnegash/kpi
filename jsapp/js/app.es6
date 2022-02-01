@@ -63,34 +63,42 @@ export default class App extends React.Component {
     };
 
     if (typeof this.state.pageState.modal === 'object') {
-      pageWrapperModifiers[`is-modal-${this.state.pageState.modal.type}`] = true;
+      pageWrapperModifiers[
+        `is-modal-${this.state.pageState.modal.type}`
+      ] = true;
     }
 
     return (
       <DocumentTitle title='KoBoToolbox'>
         <React.Fragment>
-          <PermValidator/>
-          <IntercomHandler/>
-          <div className='header-stretch-bg'/>
-          <bem.PageWrapper m={pageWrapperModifiers} className='mdl-layout mdl-layout--fixed-header'>
-            { this.state.pageState.modal &&
+          <PermValidator />
+          <IntercomHandler />
+          <div className='header-stretch-bg' />
+          <bem.PageWrapper
+            m={pageWrapperModifiers}
+            className='mdl-layout mdl-layout--fixed-header'
+          >
+            {this.state.pageState.modal && (
               <BigModal params={this.state.pageState.modal} />
-            }
+            )}
 
-            { !this.isFormBuilder() &&
+            {!this.isFormBuilder() && (
               <React.Fragment>
-                <MainHeader assetid={assetid}/>
-                <Drawer/>
+                <MainHeader assetid={assetid} />
+                <Drawer />
               </React.Fragment>
-            }
+            )}
 
-            <bem.PageWrapper__content className='mdl-layout__content' m={pageWrapperContentModifiers}>
-              { !this.isFormBuilder() &&
+            <bem.PageWrapper__content
+              className='mdl-layout__content'
+              m={pageWrapperContentModifiers}
+            >
+              {!this.isFormBuilder() && (
                 <React.Fragment>
                   <FormViewTabs type={'top'} show={this.isFormSingle()} />
                   <FormViewTabs type={'side'} show={this.isFormSingle()} />
                 </React.Fragment>
-              }
+              )}
               {this.props.children}
             </bem.PageWrapper__content>
           </bem.PageWrapper>

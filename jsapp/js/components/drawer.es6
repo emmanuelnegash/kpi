@@ -3,20 +3,14 @@ import PropTypes from 'prop-types';
 import reactMixin from 'react-mixin';
 import autoBind from 'react-autobind';
 import Reflux from 'reflux';
-import { Link, hashHistory } from 'react-router';
+import {Link, hashHistory} from 'react-router';
 import {stores} from '../stores';
 import bem from 'js/bem';
 import {searches} from '../searches';
 import mixins from '../mixins';
 import LibrarySidebar from 'js/components/library/librarySidebar';
-import {
-  IntercomHelpBubble,
-  SupportHelpBubble,
-} from '../components/helpBubbles';
-import {
-  COMMON_QUERIES,
-  MODAL_TYPES,
-} from '../constants';
+import {IntercomHelpBubble, SupportHelpBubble} from '../components/helpBubbles';
+import {COMMON_QUERIES, MODAL_TYPES} from '../constants';
 import {ROUTES} from 'js/router/routerConstants';
 import {assign} from 'utils';
 import SidebarFormsList from '../lists/sidebarForms';
@@ -29,50 +23,51 @@ const INITIAL_STATE = {
       assetType: COMMON_QUERIES.s,
     },
     filterTags: COMMON_QUERIES.s,
-  })
+  }),
 };
 
 class FormSidebar extends Reflux.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state = assign({
-      currentAssetId: false,
-      files: []
-    }, stores.pageState.state);
+    this.state = assign(
+      {
+        currentAssetId: false,
+        files: [],
+      },
+      stores.pageState.state
+    );
     this.state = assign(INITIAL_STATE, this.state);
 
-    this.stores = [
-      stores.session,
-      stores.pageState
-    ];
+    this.stores = [stores.session, stores.pageState];
     this.unlisteners = [];
     autoBind(this);
   }
   componentDidMount() {
-    this.unlisteners.push(
-      hashHistory.listen(this.onRouteChange.bind(this))
-    );
+    this.unlisteners.push(hashHistory.listen(this.onRouteChange.bind(this)));
   }
   componentWillUnmount() {
-    this.unlisteners.forEach((clb) => {clb();});
+    this.unlisteners.forEach((clb) => {
+      clb();
+    });
   }
-  newFormModal (evt) {
+  newFormModal(evt) {
     evt.preventDefault();
     stores.pageState.showModal({
-      type: MODAL_TYPES.NEW_FORM
+      type: MODAL_TYPES.NEW_FORM,
     });
   }
   render() {
     return (
       <React.Fragment>
-        <bem.KoboButton
+        {/* Commented out */}
+        {/* <bem.KoboButton
           m={['blue', 'fullwidth']}
           disabled={!stores.session.isLoggedIn}
           onClick={this.newFormModal}
         >
           {t('new')}
-        </bem.KoboButton>
-        <SidebarFormsList/>
+        </bem.KoboButton> */}
+        <SidebarFormsList />
       </React.Fragment>
     );
   }
@@ -82,7 +77,7 @@ class FormSidebar extends Reflux.Component {
 }
 
 FormSidebar.contextTypes = {
-  router: PropTypes.object
+  router: PropTypes.object,
 };
 
 reactMixin(FormSidebar.prototype, searches.common);
@@ -93,7 +88,7 @@ class DrawerLink extends React.Component {
     super(props);
     autoBind(this);
   }
-  onClick (evt) {
+  onClick(evt) {
     if (!this.props.href) {
       evt.preventDefault();
     }
@@ -101,27 +96,31 @@ class DrawerLink extends React.Component {
       this.props.onClick(evt);
     }
   }
-  render () {
-    var icon = (<i className={`k-icon-${this.props['k-icon']}`}/>);
+  render() {
+    var icon = <i className={`k-icon-${this.props['k-icon']}`} />;
     var classNames = [this.props.class, 'k-drawer__link'];
 
     var link;
     if (this.props.linkto) {
       link = (
-        <Link to={this.props.linkto}
-            className={classNames.join(' ')}
-            activeClassName='active'
-            data-tip={this.props.label}>
+        <Link
+          to={this.props.linkto}
+          className={classNames.join(' ')}
+          activeClassName='active'
+          data-tip={this.props.label}
+        >
           {icon}
         </Link>
       );
     } else {
       link = (
-        <a href={this.props.href || '#'}
-            className={classNames.join(' ')}
-            onClick={this.onClick}
-            data-tip={this.props.label}>
-            {icon}
+        <a
+          href={this.props.href || '#'}
+          className={classNames.join(' ')}
+          onClick={this.onClick}
+          data-tip={this.props.label}
+        >
+          {icon}
         </a>
       );
     }
@@ -130,13 +129,10 @@ class DrawerLink extends React.Component {
 }
 
 class Drawer extends Reflux.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     autoBind(this);
-    this.stores = [
-      stores.session,
-      stores.pageState,
-    ];
+    this.stores = [stores.session, stores.pageState];
   }
   render() {
     // no sidebar for not logged in users
@@ -147,18 +143,21 @@ class Drawer extends Reflux.Component {
     return (
       <bem.KDrawer>
         <bem.KDrawer__primaryIcons>
-          <DrawerLink label={t('Projects')} linkto={ROUTES.FORMS} k-icon='projects' />
-          <DrawerLink label={t('Library')} linkto={ROUTES.LIBRARY} k-icon='library' />
+          <DrawerLink
+            label={t('Projects')}
+            linkto={ROUTES.FORMS}
+            k-icon='projects'
+          />
+          {/* Commented Out */}
+          {/* <DrawerLink label={t('Library')} linkto={ROUTES.LIBRARY} k-icon='library' /> */}
         </bem.KDrawer__primaryIcons>
 
         <bem.KDrawer__sidebar>
-          { this.isLibrary()
-            ? <LibrarySidebar />
-            : <FormSidebar />
-          }
+          {this.isLibrary() ? <LibrarySidebar /> : <FormSidebar />}
         </bem.KDrawer__sidebar>
 
-        <bem.KDrawer__secondaryIcons>
+        {/* Commented Out */}
+        {/* <bem.KDrawer__secondaryIcons>
           { stores.session.isLoggedIn &&
             <IntercomHelpBubble/>
           }
@@ -182,9 +181,9 @@ class Drawer extends Reflux.Component {
               <i className='k-icon k-icon-logo-github' />
             </a>
           }
-        </bem.KDrawer__secondaryIcons>
+        </bem.KDrawer__secondaryIcons> */}
       </bem.KDrawer>
-      );
+    );
   }
 }
 
@@ -193,7 +192,7 @@ reactMixin(Drawer.prototype, mixins.droppable);
 reactMixin(Drawer.prototype, mixins.contextRouter);
 
 Drawer.contextTypes = {
-  router: PropTypes.object
+  router: PropTypes.object,
 };
 
 export default Drawer;
