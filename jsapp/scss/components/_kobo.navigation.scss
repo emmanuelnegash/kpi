@@ -32,7 +32,7 @@
   .header__logo {
     width: 175px;
     height: 40px;
-    background: url("../img/kobologo.svg") no-repeat left bottom;
+    background: url('../img/kobologo.svg') no-repeat left bottom;
     background-size: contain;
     display: block;
   }
@@ -340,7 +340,7 @@
   .main-header__counter {
     font-size: 14px;
     margin-right: 20px;
-    color: $kobo-gray-65;
+    color: $kobo-white;
   }
 }
 
@@ -362,7 +362,7 @@
     }
 
     .header__logo {
-      background: url("../img/kobologoS.svg") no-repeat left center;
+      background: url('../img/kobologoS.svg') no-repeat left center;
       background-size: 125%;
       width: 40px;
     }

@@ -5,7 +5,7 @@
 }
 
 .mdl-layout {
-  max-width: $mdl-layout-width;
+  // max-width: $mdl-layout-width;
   margin: 0 auto;
   overflow: hidden;
 }
@@ -82,7 +82,7 @@
 
 .text-small {
   font-size: 0.85em;
-  opacity: .75;
+  opacity: 0.75;
 }
 
 // Popover menu
@@ -283,7 +283,7 @@
     }
 
     &::after {
-      content: "\25BC";
+      content: '\25BC';
       font-size: 8px;
       margin-left: 3px;
       display: inline-block;
@@ -304,7 +304,7 @@
     padding-left: 0px;
 
     &::after {
-      content: "\25BC";
+      content: '\25BC';
       font-size: 10px;
       margin-left: 5px;
       display: inline-block;
@@ -343,7 +343,7 @@
       position: absolute;
       right: 10px;
       top: 9px;
-      content: "\25BC";
+      content: '\25BC';
       font-size: 10px;
     }
   }
@@ -423,7 +423,8 @@ iframe {
     }
   }
 
-  &--sector, &--country {
+  &--sector,
+  &--country {
     width: 50%;
     float: left;
   }
@@ -460,10 +461,10 @@ iframe {
     vertical-align: top;
   }
 
-  input[type="text"],
-  input[type="email"],
-  input[type="password"],
-  input[type="url"],
+  input[type='text'],
+  input[type='email'],
+  input[type='password'],
+  input[type='url'],
   select,
   textarea {
     width: 100%;
@@ -501,7 +502,7 @@ iframe {
   }
 }
 
-.ajs-content input[type="text"],
+.ajs-content input[type='text'],
 .ajs-content textarea {
   width: 100%;
   padding: 6px 0px;

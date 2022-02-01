@@ -3,7 +3,7 @@
 // ==========================================================================
 
 .registration__bg {
-  background: url("../img/signup_photo.jpg");
+  background: url('../img/signup_photo.jpg');
   background-size: cover;
   background-repeat: none;
   width: 100%;
@@ -26,7 +26,8 @@
     margin: 0 auto;
     position: relative;
     max-width: 400px;
-    background: rgba($kobo-gray-24, 0.75);
+    border-radius: 10px;
+    background: rgba($kobo-gray-24, 0.25);
     padding: 20px 30px;
 
     a {
@@ -64,9 +65,9 @@
     margin: 0.8em 0;
   }
 
-  input[type=text],
-  input[type=password],
-  input[type=email],
+  input[type='text'],
+  input[type='password'],
+  input[type='email'],
   select {
     color: $layout-text-color;
   }
@@ -85,10 +86,10 @@
   margin-bottom: 16px;
 }
 
-.registration input[type=text],
-.registration input[type=password],
-.registration input[type=submit],
-.registration input[type=email],
+.registration input[type='text'],
+.registration input[type='password'],
+.registration input[type='submit'],
+.registration input[type='email'],
 .registration select {
   width: 100%;
   display: block;
@@ -216,7 +217,7 @@
     margin-bottom: 12px;
   }
 
-  input[type=submit] {
+  input[type='submit'] {
     margin-top: 20px;
   }
 }
