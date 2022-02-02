@@ -9,11 +9,7 @@ import {actions} from 'js/actions';
 import {stores} from 'js/stores';
 import {getLangString} from 'utils';
 import {LOCKING_RESTRICTIONS} from 'js/components/locking/lockingConstants';
-import {
-  MODAL_TYPES,
-  QUESTION_TYPES,
-  GROUP_TYPES_BEGIN,
-} from 'js/constants';
+import {MODAL_TYPES, QUESTION_TYPES, GROUP_TYPES_BEGIN} from 'js/constants';
 import {
   hasRowRestriction,
   hasAssetRestriction,
@@ -119,8 +115,12 @@ export class TranslationTable extends React.Component {
                 disabled={!this.canEditLanguages()}
                 className='right-tooltip form-view__icon-button-edit'
               >
-                {this.state.showLanguageForm && <i className='k-icon k-icon-close' />}
-                {!this.state.showLanguageForm && <i className='k-icon k-icon-edit' />}
+                {this.state.showLanguageForm && (
+                  <i className='k-icon k-icon-close' />
+                )}
+                {!this.state.showLanguageForm && (
+                  <i className='k-icon k-icon-edit' />
+                )}
               </bem.FormView__iconButton>
               {`${translations[langIndex]} ${editableColTitle}`}
             </React.Fragment>
@@ -340,7 +340,7 @@ export class TranslationTable extends React.Component {
           </bem.KoboButton>
 
           <bem.KoboButton
-            m='blue'
+            m='green'
             onClick={this.saveChanges.bind(this)}
             disabled={this.state.isSaveChangesButtonPending}
           >

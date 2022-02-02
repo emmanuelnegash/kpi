@@ -150,7 +150,7 @@ class MainHeader extends Reflux.Component {
   renderLoginButton() {
     return (
       <bem.LoginBox>
-        <a href={getLoginUrl()} className='kobo-button kobo-button--blue'>
+        <a href={getLoginUrl()} className='kobo-button kobo-button--green'>
           {t('Log In')}
         </a>
       </bem.LoginBox>

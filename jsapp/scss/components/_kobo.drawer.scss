@@ -37,12 +37,12 @@
   }
 
   &:hover {
-    color: $kobo-teal;
+    color: $kobo-green;
   }
 
   &.active {
-    color: $kobo-teal;
-    border-left: 3px solid $kobo-teal;
+    color: $kobo-green;
+    border-left: 3px solid $kobo-green;
   }
 }
 

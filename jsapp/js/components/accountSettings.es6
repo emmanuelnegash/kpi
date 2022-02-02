@@ -18,29 +18,25 @@ import {ROUTES} from 'js/router/routerConstants';
 import envStore from 'js/envStore';
 import './accountSettings.scss';
 
-const UNSAVED_CHANGES_WARNING = t('You have unsaved changes. Leave settings without saving?');
+const UNSAVED_CHANGES_WARNING = t(
+  'You have unsaved changes. Leave settings without saving?'
+);
 
 export default class AccountSettings extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     let state = {
       isPristine: true,
       requireAuth: false,
-      fieldsErrors: {}
+      fieldsErrors: {},
     };
     this.state = state;
     autoBind(this);
   }
 
   rebuildState() {
-    if (
-      stores.session.isLoggedIn &&
-      envStore.isReady
-    ) {
-      this.setStateFromSession(
-        stores.session.currentAccount,
-        envStore.data
-      );
+    if (stores.session.isLoggedIn && envStore.isReady) {
+      this.setStateFromSession(stores.session.currentAccount, envStore.data);
     }
   }
 
@@ -50,7 +46,7 @@ export default class AccountSettings extends React.Component {
     this.rebuildState();
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.unpreventClosingTab();
   }
 
@@ -90,18 +86,18 @@ export default class AccountSettings extends React.Component {
       genderChoices: [
         {
           value: 'male',
-          label: t('Male')
+          label: t('Male'),
         },
         {
           value: 'female',
-          label: t('Female')
+          label: t('Female'),
         },
         {
           value: 'other',
-          label: t('Other')
+          label: t('Other'),
         },
       ],
-      fieldsErrors: {}
+      fieldsErrors: {},
     });
   }
 
@@ -122,7 +118,7 @@ export default class AccountSettings extends React.Component {
           this.unpreventClosingTab();
           hashHistory.goBack();
         },
-        oncancel: dialog.destroy
+        oncancel: dialog.destroy,
       };
       dialog.set(opts).show();
     }
@@ -159,11 +155,11 @@ export default class AccountSettings extends React.Component {
           linkedin: this.state.linkedin,
           instagram: this.state.instagram,
           metadata: this.state.metadata,
-        })
+        }),
       },
       {
         onComplete: this.onUpdateComplete.bind(this),
-        onFail: this.onUpdateFail.bind(this)
+        onFail: this.onUpdateFail.bind(this),
       }
     );
   }
@@ -172,7 +168,7 @@ export default class AccountSettings extends React.Component {
     this.unpreventClosingTab();
     this.setState({
       isPristine: true,
-      fieldsErrors: {}
+      fieldsErrors: {},
     });
   }
 
@@ -195,45 +191,76 @@ export default class AccountSettings extends React.Component {
     this.preventClosingTab();
     this.setState({
       isPristine: false,
-      [attr]: val
+      [attr]: val,
     });
   }
-  nameChange (e) {this.handleChange(e, 'name');}
-  emailChange (e) {this.handleChange(e, 'email');}
-  organizationChange (e) {this.handleChange(e, 'organization');}
-  organizationWebsiteChange (e) {this.handleChange(e, 'organizationWebsite');}
-  primarySectorChange (e) {this.handleChange(e, 'primarySector');}
-  genderChange (e) {this.handleChange(e, 'gender');}
-  bioChange (e) {this.handleChange(e, 'bio');}
-  phoneNumberChange (e) {this.handleChange(e, 'phoneNumber');}
-  addressChange (e) {this.handleChange(e, 'address');}
-  cityChange (e) {this.handleChange(e, 'city');}
-  countryChange (e) {this.handleChange(e, 'country');}
-  defaultLanguageChange (e) {this.handleChange(e, 'defaultLanguage');}
-  requireAuthChange (isChecked) {this.handleChange(isChecked, 'requireAuth');}
-  twitterChange (e) {this.handleChange(e, 'twitter');}
-  linkedinChange (e) {this.handleChange(e, 'linkedin');}
-  instagramChange (e) {this.handleChange(e, 'instagram');}
-  metadataChange (e) {this.handleChange(e, 'metadata');}
+  nameChange(e) {
+    this.handleChange(e, 'name');
+  }
+  emailChange(e) {
+    this.handleChange(e, 'email');
+  }
+  organizationChange(e) {
+    this.handleChange(e, 'organization');
+  }
+  organizationWebsiteChange(e) {
+    this.handleChange(e, 'organizationWebsite');
+  }
+  primarySectorChange(e) {
+    this.handleChange(e, 'primarySector');
+  }
+  genderChange(e) {
+    this.handleChange(e, 'gender');
+  }
+  bioChange(e) {
+    this.handleChange(e, 'bio');
+  }
+  phoneNumberChange(e) {
+    this.handleChange(e, 'phoneNumber');
+  }
+  addressChange(e) {
+    this.handleChange(e, 'address');
+  }
+  cityChange(e) {
+    this.handleChange(e, 'city');
+  }
+  countryChange(e) {
+    this.handleChange(e, 'country');
+  }
+  defaultLanguageChange(e) {
+    this.handleChange(e, 'defaultLanguage');
+  }
+  requireAuthChange(isChecked) {
+    this.handleChange(isChecked, 'requireAuth');
+  }
+  twitterChange(e) {
+    this.handleChange(e, 'twitter');
+  }
+  linkedinChange(e) {
+    this.handleChange(e, 'linkedin');
+  }
+  instagramChange(e) {
+    this.handleChange(e, 'instagram');
+  }
+  metadataChange(e) {
+    this.handleChange(e, 'metadata');
+  }
 
   render() {
-    if(!stores.session.isLoggedIn || !envStore.isReady) {
+    if (!stores.session.isLoggedIn || !envStore.isReady) {
       return null;
     }
 
     var accountName = stores.session.currentAccount.username;
     var initialsStyle = {
-      background: `#${stringToColor(accountName)}`
+      background: `#${stringToColor(accountName)}`,
     };
 
     return (
       <DocumentTitle title={`${accountName} | KoboToolbox`}>
         <bem.AccountSettings>
           <bem.AccountSettings__actions>
-            <bem.KoboButton
-              onClick={this.updateProfile}
-              m={['blue']}
-            >
+            <bem.KoboButton onClick={this.updateProfile} m={['green']}>
               {t('Save Changes')}
               {!this.state.isPristine && ' *'}
             </bem.KoboButton>
@@ -243,7 +270,7 @@ export default class AccountSettings extends React.Component {
               m='icon'
               className='account-settings-close'
             >
-              <i className='k-icon k-icon-close'/>
+              <i className='k-icon k-icon-close' />
             </bem.Button>
           </bem.AccountSettings__actions>
 
@@ -265,7 +292,9 @@ export default class AccountSettings extends React.Component {
                 <Checkbox
                   checked={this.state.requireAuth}
                   onChange={this.requireAuthChange}
-                  label={t('Require authentication to see forms and submit data')}
+                  label={t(
+                    'Require authentication to see forms and submit data'
+                  )}
                 />
               </bem.AccountSettings__item>
 
@@ -275,7 +304,9 @@ export default class AccountSettings extends React.Component {
                   errors={this.state.fieldsErrors.name}
                   value={this.state.name}
                   onChange={this.nameChange}
-                  description={t('Use this to display your real name to other users')}
+                  description={t(
+                    'Use this to display your real name to other users'
+                  )}
                 />
               </bem.AccountSettings__item>
 
@@ -298,7 +329,7 @@ export default class AccountSettings extends React.Component {
                 </a>
               </bem.AccountSettings__item>
 
-              <ApiTokenDisplay/>
+              <ApiTokenDisplay />
 
               <bem.AccountSettings__item>
                 <TextBox
@@ -458,5 +489,8 @@ export default class AccountSettings extends React.Component {
   }
 }
 
-reactMixin(AccountSettings.prototype, Reflux.connect(stores.session, 'session'));
+reactMixin(
+  AccountSettings.prototype,
+  Reflux.connect(stores.session, 'session')
+);
 reactMixin(AccountSettings.prototype, Reflux.ListenerMixin);

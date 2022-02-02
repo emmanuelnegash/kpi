@@ -104,13 +104,13 @@
       // left border is detached from horizontal lines,
       // so we need to make it a separate element
       &::before {
-        content: "";
+        content: '';
         position: absolute;
         width: 4px;
         height: 100%;
         top: 0;
         left: -10px;
-        background-color: $kobo-teal;
+        background-color: $kobo-green;
       }
     }
 
@@ -164,7 +164,7 @@
 
     &.active {
       font-weight: 700;
-      border-bottom: 4px solid $kobo-teal;
+      border-bottom: 4px solid $kobo-green;
     }
 
     &.form-view__tab--disabled {
@@ -495,7 +495,6 @@
     }
   }
 
-
   &.form-view__cell--translation-modal-warning {
     margin-bottom: 20px;
   }
@@ -601,8 +600,6 @@
       background-color: lighten($kobo-blue, 40%);
       animation: recent 5s 1;
     }
-
-
   }
 
   .form-view__group--deployments {
@@ -885,21 +882,19 @@
 // Compensate for when sidebar(s) messes up modal a bit
 
 // TODO: Clean this up via PR changes
-@media
-  (min-width: 770px) and (max-width: 1020px),
-  (max-width: 560px) {
-    .bulk-options {
-      display: block !important;
+@media (min-width: 770px) and (max-width: 1020px), (max-width: 560px) {
+  .bulk-options {
+    display: block !important;
 
-      .bulk-options__buttons {
-        margin-top: 6px;
-        text-align: center;
-      }
+    .bulk-options__buttons {
+      margin-top: 6px;
+      text-align: center;
     }
+  }
 
-    .multi-checkbox {
-      overflow-x: scroll !important;
-    }
+  .multi-checkbox {
+    overflow-x: scroll !important;
+  }
 }
 
 .form-view--library-asset {

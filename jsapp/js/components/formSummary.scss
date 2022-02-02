@@ -1,4 +1,4 @@
-@use "scss/_colors";
+@use 'scss/_colors';
 
 .form-view__group.form-view__group--description-cols {
   padding: 20px;
@@ -60,7 +60,7 @@
 
       &.active {
         color: colors.$kobo-white;
-        background: colors.$kobo-teal;
+        background: colors.$kobo-green;
         position: relative;
 
         &::after {
@@ -68,7 +68,7 @@
           height: 0;
           border-left: 10px solid transparent;
           border-right: 10px solid transparent;
-          border-top: 10px solid colors.$kobo-teal;
+          border-top: 10px solid colors.$kobo-green;
           content: '';
           position: absolute;
           bottom: -9px;

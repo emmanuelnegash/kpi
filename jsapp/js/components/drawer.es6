@@ -9,12 +9,12 @@ import bem from 'js/bem';
 import {searches} from '../searches';
 import mixins from '../mixins';
 import LibrarySidebar from 'js/components/library/librarySidebar';
-import {IntercomHelpBubble, SupportHelpBubble} from '../components/helpBubbles';
+// import {IntercomHelpBubble, SupportHelpBubble} from '../components/helpBubbles';
 import {COMMON_QUERIES, MODAL_TYPES} from '../constants';
 import {ROUTES} from 'js/router/routerConstants';
 import {assign} from 'utils';
 import SidebarFormsList from '../lists/sidebarForms';
-import envStore from 'js/envStore';
+// import envStore from 'js/envStore';
 
 const INITIAL_STATE = {
   headerFilters: 'forms',
