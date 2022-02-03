@@ -75,9 +75,37 @@ class SidebarFormsList extends Reflux.Component {
       });
     }.bind(this);
   }
+  renderButtons() {
+    return (
+      this.state.defaultQueryCategorizedResultsLists &&
+      this.state.defaultQueryCategorizedResultsLists[
+        DEPLOYMENT_CATEGORIES.Deployed.id
+      ]
+        .sort(
+          (a, b) =>
+            new Date(b.date_created).getTime() -
+            new Date(a.date_created).getTime()
+        )
+        .map((value, i) => (
+          <>
+            <bem.KoboButton m={['green', 'fullwidth']}>
+              <a
+                href={value.deployment__links.offline_url}
+                target='_blank'
+                style={{color: 'white'}}
+                disabled={!stores.session.isLoggedIn}
+              >
+                {'new ' + value.name.split(' ')[0] + ' entry'}
+              </a>
+            </bem.KoboButton>
+            <br />
+          </>
+        ))
+    );
+  }
   render() {
     var s = this.state;
-    var activeItems = 'defaultQueryCategorizedResultsLists';
+    // var activeItems = 'defaultQueryCategorizedResultsLists';
 
     // sync sidebar with main list when it is not a search query, allows for deletes to update the sidebar as well
     // this is a temporary fix, a proper fix needs to update defaultQueryCategorizedResultsLists when deleting/archiving/cloning
@@ -87,61 +115,72 @@ class SidebarFormsList extends Reflux.Component {
       s.searchResultsFor &&
       s.searchResultsFor.assetType === COMMON_QUERIES.s
     ) {
-      activeItems = 'searchResultsCategorizedResultsLists';
+      // activeItems = 'searchResultsCategorizedResultsLists';
     }
 
     if (s.searchState === 'loading' && s.searchString === false) {
       return <LoadingSpinner />;
     }
-
     return (
       <bem.FormSidebar>
         {(() => {
           if (s.defaultQueryState === 'loading') {
             return <LoadingSpinner />;
           } else if (s.defaultQueryState === 'done') {
-            return Object.keys(DEPLOYMENT_CATEGORIES).map((categoryId) => {
-              var categoryVisible = this.state.selectedCategories[categoryId];
-              if (s[activeItems][categoryId].length < 1) {
-                categoryVisible = false;
-              }
+            return (
+              <>
+                {this.renderButtons()}
+                {/* {Object.keys(DEPLOYMENT_CATEGORIES).map((categoryId) => {
+                  var categoryVisible =
+                    this.state.selectedCategories[categoryId];
+                  if (s[activeItems][categoryId].length < 1) {
+                    categoryVisible = false;
+                  }
 
-              const icon = ['k-icon'];
-              if (categoryId === DEPLOYMENT_CATEGORIES.Deployed.id) {
-                icon.push('k-icon-deploy');
-              }
-              // if (categoryId === DEPLOYMENT_CATEGORIES.Draft.id) {
-              //   icon.push('k-icon-drafts');
-              // }
-              // if (categoryId === DEPLOYMENT_CATEGORIES.Archived.id) {
-              //   icon.push('k-icon-archived');
-              // }
+                  const icon = ['k-icon'];
+                  if (categoryId === DEPLOYMENT_CATEGORIES.Deployed.id) {
+                    icon.push('k-icon-deploy');
+                  }
+                  if (categoryId === DEPLOYMENT_CATEGORIES.Draft.id) {
+                    icon.push('k-icon-drafts');
+                  }
+                  if (categoryId === DEPLOYMENT_CATEGORIES.Archived.id) {
+                    icon.push('k-icon-archived');
+                  }
 
-              return [
-                <bem.FormSidebar__label
-                  m={[categoryId, categoryVisible ? 'visible' : 'collapsed']}
-                  onClick={this.toggleCategory(categoryId)}
-                  key={`${categoryId}-label`}
-                >
-                  <i className={icon.join(' ')} />
-                  <bem.FormSidebar__labelText>
-                    {DEPLOYMENT_CATEGORIES[categoryId].label}
-                  </bem.FormSidebar__labelText>
-                  <bem.FormSidebar__labelCount>
-                    {s[activeItems][categoryId].length}
-                  </bem.FormSidebar__labelCount>
-                </bem.FormSidebar__label>,
+                  return [
+                    <bem.FormSidebar__label
+                      m={[
+                        categoryId,
+                        categoryVisible ? 'visible' : 'collapsed',
+                      ]}
+                      onClick={this.toggleCategory(categoryId)}
+                      key={`${categoryId}-label`}
+                    >
+                      <i className={icon.join(' ')} />
+                      <bem.FormSidebar__labelText>
+                        {DEPLOYMENT_CATEGORIES[categoryId].label}
+                      </bem.FormSidebar__labelText>
+                      <bem.FormSidebar__labelCount>
+                        {s[activeItems][categoryId].length}
+                      </bem.FormSidebar__labelCount>
+                    </bem.FormSidebar__label>,
 
-                <bem.FormSidebar__grouping
-                  m={[categoryId, categoryVisible ? 'visible' : 'collapsed']}
-                  key={`${categoryId}-group`}
-                >
-                  {s[activeItems][categoryId].map(
-                    this.renderMiniAssetRow.bind(this)
-                  )}
-                </bem.FormSidebar__grouping>,
-              ];
-            });
+                    <bem.FormSidebar__grouping
+                      m={[
+                        categoryId,
+                        categoryVisible ? 'visible' : 'collapsed',
+                      ]}
+                      key={`${categoryId}-group`}
+                    >
+                      {s[activeItems][categoryId].map(
+                        this.renderMiniAssetRow.bind(this)
+                      )}
+                    </bem.FormSidebar__grouping>,
+                  ];
+                })} */}
+              </>
+            );
           }
         })()}
       </bem.FormSidebar>

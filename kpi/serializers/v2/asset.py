@@ -499,7 +499,8 @@ class AssetSerializer(serializers.HyperlinkedModelSerializer):
             else:
                 asset = self.instance
                 fields = data_sharing['fields']
-                form_pack, _unused = build_formpack(asset, submission_stream=[])
+                form_pack, _unused = build_formpack(
+                    asset, submission_stream=[])
                 valid_fields = [
                     f.path for f in form_pack.get_fields_for_versions(
                         form_pack.versions.keys()
@@ -609,6 +610,7 @@ class AssetListSerializer(AssetSerializer):
                   'has_deployment',
                   'deployed_version_id',
                   'deployment__identifier',
+                  'deployment__links',
                   'deployment__active',
                   'deployment__submission_count',
                   'permissions',

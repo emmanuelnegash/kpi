@@ -31,6 +31,7 @@ class FormSidebar extends Reflux.Component {
     super(props);
     this.state = assign(
       {
+        asset: false,
         currentAssetId: false,
         files: [],
       },
@@ -56,12 +57,13 @@ class FormSidebar extends Reflux.Component {
       type: MODAL_TYPES.NEW_FORM,
     });
   }
+
   render() {
     return (
       <React.Fragment>
         {/* Commented out */}
         {/* <bem.KoboButton
-          m={['blue', 'fullwidth']}
+          m={['green', 'fullwidth']}
           disabled={!stores.session.isLoggedIn}
           onClick={this.newFormModal}
         >

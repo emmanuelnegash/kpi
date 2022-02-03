@@ -460,8 +460,8 @@ export const MATRIX_PAIR_PROPS = {
 
 export const DEPLOYMENT_CATEGORIES = Object.freeze({
   Deployed: {id: 'Deployed', label: t('Deployed')},
-  // Draft: {id: 'Draft', label: t('Draft')},
-  // Archived: {id: 'Archived', label: t('Archived')},
+  Draft: {id: 'Draft', label: t('Draft')},
+  Archived: {id: 'Archived', label: t('Archived')},
 });
 
 export const QUERY_LIMIT_DEFAULT = 5000;
