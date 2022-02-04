@@ -925,14 +925,14 @@ export default assign({
 
     if (!this.state.isNewAsset && !this.state.asset) {
       return (
-        <DocumentTitle title={`${docTitle} | KoboToolbox`}>
+        <DocumentTitle title={`${docTitle} | DA Registry`}>
           <LoadingSpinner/>
         </DocumentTitle>
       );
     }
 
     return (
-      <DocumentTitle title={`${docTitle} | KoboToolbox`}>
+      <DocumentTitle title={`${docTitle} | DA Registry`}>
         <bem.uiPanel m={['transparent', 'fixed']}>
           <bem.uiPanel__body>
             {this.renderAside()}

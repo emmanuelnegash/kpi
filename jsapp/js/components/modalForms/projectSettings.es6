@@ -971,7 +971,7 @@ class ProjectSettings extends React.Component {
               onChange={this.onShareMetadataChange}
               label={
                 t(
-                  'Help KoBoToolbox improve this product by sharing the sector and country where this project will be deployed.'
+                  'Help DA Registryimprove this product by sharing the sector and country where this project will be deployed.'
                 ) +
                 ' ' +
                 t(

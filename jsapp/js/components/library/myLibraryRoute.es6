@@ -96,7 +96,7 @@ class MyLibraryRoute extends React.Component {
     }
 
     return (
-      <DocumentTitle title={`${t('My Library')} | KoboToolbox`}>
+      <DocumentTitle title={`${t('My Library')} | DA Registry`}>
         <Dropzone
           onDrop={this.onFileDrop}
           disableClick
