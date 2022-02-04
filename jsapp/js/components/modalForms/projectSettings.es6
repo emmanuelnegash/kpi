@@ -918,7 +918,6 @@ class ProjectSettings extends React.Component {
               />
             </bem.FormModal__item>
           )}
-
           <bem.FormModal__item>
             <label htmlFor='description'>{t('Description')}</label>
             <TextareaAutosize
@@ -927,16 +926,14 @@ class ProjectSettings extends React.Component {
               placeholder={t('Enter short description here')}
             />
           </bem.FormModal__item>
-
-          <bem.FormModal__item>
+          {/* Commented Out */}
+          {/* <bem.FormModal__item>
             <label className='long'>
               {t(
                 'Please specify the country and the sector where this project will be deployed. '
               )}
-              {/*t('This information will be used to help you filter results on the project list page.')*/}
             </label>
           </bem.FormModal__item>
-
           <bem.FormModal__item m='sector'>
             <label htmlFor='sector'>{t('Sector')}</label>
             <Select
@@ -950,7 +947,6 @@ class ProjectSettings extends React.Component {
               isClearable
             />
           </bem.FormModal__item>
-
           <bem.FormModal__item m='country'>
             <label htmlFor='country'>{t('Country')}</label>
             <Select
@@ -964,7 +960,6 @@ class ProjectSettings extends React.Component {
               isClearable
             />
           </bem.FormModal__item>
-
           <bem.FormModal__item m='metadata-share'>
             <Checkbox
               checked={this.state['share-metadata']}
@@ -979,8 +974,7 @@ class ProjectSettings extends React.Component {
                 )
               }
             />
-          </bem.FormModal__item>
-
+          </bem.FormModal__item> */}
           {(this.props.context === PROJECT_SETTINGS_CONTEXTS.NEW ||
             this.props.context === PROJECT_SETTINGS_CONTEXTS.REPLACE) && (
             <bem.Modal__footer>
@@ -1003,7 +997,6 @@ class ProjectSettings extends React.Component {
               </bem.KoboButton>
             </bem.Modal__footer>
           )}
-
           {this.props.context === PROJECT_SETTINGS_CONTEXTS.EXISTING && (
             <bem.FormModal__item>
               <bem.FormModal__item m='inline'>
@@ -1032,7 +1025,6 @@ class ProjectSettings extends React.Component {
               )}
             </bem.FormModal__item>
           )}
-
           {isSelfOwned &&
             this.props.context === PROJECT_SETTINGS_CONTEXTS.EXISTING && (
               <bem.FormModal__item>

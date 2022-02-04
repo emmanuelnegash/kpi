@@ -88,16 +88,15 @@ class SidebarFormsList extends Reflux.Component {
         )
         .map((value, i) => (
           <>
-            <bem.KoboButton m={['green', 'fullwidth']}>
-              <a
-                href={value.deployment__links.offline_url}
-                target='_blank'
-                style={{color: 'white'}}
-                disabled={!stores.session.isLoggedIn}
-              >
+            <a
+              href={value.deployment__links.offline_url}
+              target='_blank'
+              hidden={!stores.session.isLoggedIn}
+            >
+              <bem.KoboButton m={['green', 'fullwidth']}>
                 {'new ' + value.name.split(' ')[0] + ' entry'}
-              </a>
-            </bem.KoboButton>
+              </bem.KoboButton>
+            </a>
             <br />
           </>
         ))

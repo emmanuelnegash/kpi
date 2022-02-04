@@ -69,6 +69,14 @@ class FormSidebar extends Reflux.Component {
         >
           {t('new')}
         </bem.KoboButton> */}
+        <a
+          href='/admin/auth'
+          target='_blank'
+          hidden={!stores.session.isLoggedIn}
+        >
+          <bem.KoboButton m={['teal', 'fullwidth']}>{'Users'}</bem.KoboButton>
+        </a>
+        <br />
         <SidebarFormsList />
       </React.Fragment>
     );

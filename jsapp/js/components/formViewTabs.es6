@@ -52,7 +52,7 @@ class FormViewTabs extends Reflux.Component {
 
   componentDidMount() {
     // On initial load use the possibly stored asset.
-    this.setState({asset: assetStore.getAsset(this.currentAssetID())})
+    this.setState({asset: assetStore.getAsset(this.currentAssetID())});
     this.listenTo(assetStore, this.assetLoad);
   }
 
@@ -79,10 +79,8 @@ class FormViewTabs extends Reflux.Component {
       this.state.asset.deployment__identifier != undefined &&
       this.state.asset.has_deployment &&
       this.state.asset.deployment__submission_count > 0 &&
-      (
-        this.userCan('view_submissions', this.state.asset) ||
-        this.userCanPartially('view_submissions', this.state.asset)
-      )
+      (this.userCan('view_submissions', this.state.asset) ||
+        this.userCanPartially('view_submissions', this.state.asset))
     );
   }
 
@@ -172,7 +170,9 @@ class FormViewTabs extends Reflux.Component {
 
     if (
       this.state.asset &&
-      this.isActiveRoute(ROUTES.FORM_SETTINGS.replace(':uid', this.state.asset.uid))
+      this.isActiveRoute(
+        ROUTES.FORM_SETTINGS.replace(':uid', this.state.asset.uid)
+      )
     ) {
       sideTabs = [];
 
@@ -201,18 +201,17 @@ class FormViewTabs extends Reflux.Component {
         path: ROUTES.FORM_SHARING.replace(':uid', this.state.asset.uid),
       });
 
-      sideTabs.push({
-        label: t('Connect Projects'),
-        icon: 'k-icon k-icon-attach',
-        path: ROUTES.FORM_RECORDS.replace(':uid', this.state.asset.uid),
-      });
+      // Commented Out
+      // sideTabs.push({
+      //   label: t('Connect Projects'),
+      //   icon: 'k-icon k-icon-attach',
+      //   path: ROUTES.FORM_RECORDS.replace(':uid', this.state.asset.uid),
+      // });
 
       if (
-        (
-          this.state.asset.deployment__active ||
+        (this.state.asset.deployment__active ||
           // REST services should be visible for archived forms but not drafts
-          this.state.asset.deployed_versions.count > 0
-        ) &&
+          this.state.asset.deployed_versions.count > 0) &&
         mixins.permissions.userCan(
           PERMISSIONS_CODENAMES.view_submissions,
           this.state.asset
@@ -265,14 +264,10 @@ class FormViewTabs extends Reflux.Component {
       return false;
     }
     if (this.props.type === 'top') {
-      return (
-        this.renderTopTabs()
-      );
+      return this.renderTopTabs();
     }
     if (this.props.type === 'side') {
-      return (
-        this.renderFormSideTabs()
-      );
+      return this.renderFormSideTabs();
     }
   }
 }
