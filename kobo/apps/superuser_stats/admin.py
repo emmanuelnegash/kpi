@@ -106,7 +106,8 @@ class SubmissionsByCountry(admin.ModelAdmin):
 
         countries = COUNTRIES
         if country_filter.value():
-            countries = [country for country in COUNTRIES if country[0] == country_filter.value()]
+            countries = [
+                country for country in COUNTRIES if country[0] == country_filter.value()]
 
         # Filter for individual countries
         for code, name in countries:
@@ -203,5 +204,5 @@ class UserStatisticsAdmin(admin.ModelAdmin):
         return data
 
 
-admin.site.register(KobocatSubmissionCounter, UserStatisticsAdmin)
-admin.site.register(ReadOnlyKobocatInstance, SubmissionsByCountry)
+# admin.site.register(KobocatSubmissionCounter, UserStatisticsAdmin)
+# admin.site.register(ReadOnlyKobocatInstance, SubmissionsByCountry)

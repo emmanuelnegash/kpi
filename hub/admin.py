@@ -73,8 +73,8 @@ class UserDeleteAdmin(UserAdmin):
             )
 
 
-admin.site.register(SitewideMessage)
-admin.site.register(ConfigurationFile)
-admin.site.register(PerUserSetting)
+# admin.site.register(SitewideMessage)
+# admin.site.register(ConfigurationFile)
+# admin.site.register(PerUserSetting)
 admin.site.unregister(User)
 admin.site.register(User, UserDeleteAdmin)

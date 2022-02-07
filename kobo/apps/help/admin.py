@@ -51,5 +51,5 @@ class InAppMessageAdmin(MarkdownxModelAdmin):
         super().save_model(request, obj, form, change)
 
 
-admin.site.register(InAppMessage, InAppMessageAdmin)
-admin.site.register(InAppMessageFile, admin.ModelAdmin)
+# admin.site.register(InAppMessage, InAppMessageAdmin)
+# admin.site.register(InAppMessageFile, admin.ModelAdmin)
